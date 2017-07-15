@@ -1,10 +1,6 @@
 import boto3
 import json
 
-
-
-#session = boto3.Session(profile_name='default')
-
 '''
 Returns Running instances
 '''
@@ -22,6 +18,14 @@ def instances_running():
             recource.append(data)
     return recource
 
+server = instances_running()
+
+def pass_along():
+     for item in server:
+          return item
+
+
+
 
 def instances_Running_Status():
     client = boto3.client('ec2')
@@ -38,10 +42,20 @@ def ec2_intance_tags_check():
 
 
 
-ec2_intance_tags_check()
+def tags():
+    ec2 = boto3.resource('ec2')
+    print nodes
+    instance = ec2.Instance(items)
+
+
+
+#tags()
+
+
+
+
 
     #if item['Value'] == '':
     #        no_tag_ec2 = item['ResourceId']
     #        print no_tag_ec2
             #client.create_tags(Resources=[no_tag_ec2],Tags=[{'Key': 'Warning_Tag','Value':'48_HRS_DELETETION_WILL_HAPPEN_UNLESS_CORRECT_TAGS_ARE_APPLIED'}])
-    
