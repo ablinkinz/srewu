@@ -1,3 +1,2 @@
-from runningec2 import *
-from tags import *
+from apply_warn_tags import *
 from check_warning import *

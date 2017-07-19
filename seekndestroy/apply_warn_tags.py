@@ -1,6 +1,8 @@
 import boto3
 import json
 client = boto3.client('ec2')
+import logging
+
 
 '''
 Returns Running instances
@@ -11,6 +13,7 @@ def instances_running():
     client = boto3.client('ec2')
     nodes = client.describe_instances()
     data = nodes['Reservations']
+    logging.debug('Checking for Ec2 servers')
     for item in data:
         for items in item['Instances']:
             DNSname = items['PublicDnsName']
@@ -18,6 +21,7 @@ def instances_running():
             data = InstanceId
             recource.append(data)
     return recource
+
 
 server = instances_running()
 

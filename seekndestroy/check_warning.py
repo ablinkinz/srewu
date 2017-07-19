@@ -1,10 +1,9 @@
 import boto3
-import runningec2 as running
 import json
-import tags
+import apply_warn_tags
 client = boto3.client('ec2')
-node = running.pass_along
-client = boto3.client('ec2')
+node = apply_warn_tags.pass_along
+
 
 
 def get_list_of_warnings(node):
