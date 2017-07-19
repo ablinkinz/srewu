@@ -11,19 +11,15 @@ def ec2_intance_tags_check(node):
     out = json.dumps(response)
     clean = json.loads(out)
     d = []
-    try:
-        for item in clean['Tags']:
+    for item in clean['Tags']:
+            g = []
             node = item['ResourceId']
             key = item['Key']
             value = item['Value']
             d = {'server': node, 'Tag_Key': key, 'Value': value}
-            return d
-    except:
-        print "This is an error message!"
+            if d['Tag_Key'] == 'Name' and d['Value'] == "":
+                g.append(d['server'])
+                client.create_tags(Resources=g,Tags=[{'Key': 'Warning_Tag','Value':'IN 48 HRS DELETETION WILL HAPPEN UNLESS CORRECT TAGS ARE APPLIED'}])
 
 
-
-info = ec2_intance_tags_check(node)
-
-for item in info:
-    print item['Tag_Key']
+ec2_intance_tags_check(node)
