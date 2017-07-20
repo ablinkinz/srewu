@@ -1,14 +1,13 @@
 import boto3
 import json
-client = boto3.client('ec2')
 import logging
+client = boto3.client('ec2')
 
 
 
 
 def instances_running():
     recource = []
-    client = boto3.client('ec2')
     nodes = client.describe_instances()
     data = nodes['Reservations']
     logging.debug('Checking for Ec2 servers')
@@ -34,7 +33,6 @@ def show_tags(ids):
         instance = ec2.Instance(item)
         d['Servers'] = instance.id
         l = []
-
         for items in instance.tags:
             tags = items
             value = tags['Value']
