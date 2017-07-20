@@ -22,6 +22,6 @@ def get_list_of_warnings(node):
 
 def delete_recource(server):
     delete_node = server
-    response = client.terminate_instances(InstanceIds=delete_node,DryRun=False)
+    response = client.terminate_instances(InstanceIds=delete_node,DryRun=True)
 
 delete_recource(get_list_of_warnings(node))

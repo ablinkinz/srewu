@@ -20,10 +20,10 @@ def instances_running():
             InstanceId = items['InstanceId']
             data = InstanceId
             recource.append(data)
-    return recource
+    return  recource
 
 
-server = instances_running()
+instances_running()
 
 def pass_along():
      for item in server:
@@ -48,6 +48,4 @@ def ec2_intance_tags_check(node):
         if d['Tag_Key'] == 'Name' and d['Value'] == "":
             g.append(d['server'])
             client.create_tags(Resources=g,Tags=[{'Key': 'Warning_Tag','Value':'IN 48 HRS DELETETION WILL HAPPEN UNLESS CORRECT TAGS ARE APPLIED'}])
-
-
-ec2_intance_tags_check(pass_along())
+#ec2_intance_tags_check(pass_along())
