@@ -11,7 +11,7 @@ somthing
 '''
 
 
-def swarmi_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
+def swarm_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
     d = []
     client.swarm.init(advertise_addr, listen_addr,force_new_cluster)
     output =  'Docker swrarm has been Initalized on the minion and the worker Join token is below'
