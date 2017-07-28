@@ -1,6 +1,10 @@
 import docker
 import os
 import subprocess
+import salt.config
+import salt.loader
+__opts__ = salt.config.minion_config('/etc/salt/minion')
+__grains__ = salt.loader.grains(__opts__)
 client = docker.from_env()
 
 '''
@@ -18,10 +22,12 @@ def swarm_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
     token = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     key  = token.communicate()[0]
     d.append({'Comment': output, 'Worker_Token': key})
-    return d 
-     
+    return d
 
 
 
 
-
+def swam_join(join_token=str):
+    d = []
+    client.swarm.join(join_token)
+    return __grains__['id']
