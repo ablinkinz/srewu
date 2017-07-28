@@ -5,9 +5,8 @@ client = docker.from_env()
 
 '''
 Initalize Docker on Minion as a Swarm Manager
-NOTE *** there are 5
-somthing
-
+* Does not work on Windows OS at the moment
+salt <Target> advertise_addr='ens4' listen_addr='0.0.0.0:5000' force_new_cluster=False
 '''
 
 
@@ -25,5 +24,4 @@ def swarm_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
 
 
 
-#swarminit(advertise_addr='ens4',listen_addr='0.0.0.0:5000', force_new_cluster=False)
 
