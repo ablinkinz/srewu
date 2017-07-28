@@ -15,9 +15,9 @@ def swarm_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
     client.swarm.init(advertise_addr, listen_addr,force_new_cluster)
     output =  'Docker swrarm has been Initalized on the minion and the worker Join token is below'
     command = "docker swarm join-token worker | xargs | awk '{print $16}' "
-    var = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-    somthing = var.communicate()[0]
-    d.append({'Comment': output, 'Worker_Token': somthing})
+    token = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    key  = token.communicate()[0]
+    d.append({'Comment': output, 'Worker_Token': key})
     return d 
      
 
