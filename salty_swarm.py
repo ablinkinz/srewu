@@ -27,11 +27,19 @@ def swarm_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
 
 
 
-def swarm_join(join_token=str,remote_addrs=list,listen_addr=str):
+def joinswarm(remote_addr, listen_addr, token):
     d = []
-    client.swarm.join(join_token,remote_addrs,listen_addr)
-    
+    client.swarm.join(remote_addrs=[remote_addr], listen_addr=listen_addr, join_token=token )
+    output = 'Node has joined the Swarm'
+    d.append({'Comment': output, 'WorkerManagerIP': remote_addr })
+    return d
 
 
 
-swarm_join(join_token="SWMTKN-1-3mnh7j1k8ux3m6nsjhy88q3hjdgfse6y3alcpcszojg2c2eq16-2d0d0q38l6a4yyeaeuorxk54v",remote_addrs=("10.142.0.2:2377"],listen_addr="ens4")
+
+
+
+
+
+
+
