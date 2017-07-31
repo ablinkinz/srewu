@@ -33,4 +33,5 @@ Salty Docker Examples:
 *docker swarm init
 
 ..code-block::bash
+
     salt minion srewu.swarm_init advertise_addr='ens4' listen_addr='0.0.0.0' force_new_cluster=False
