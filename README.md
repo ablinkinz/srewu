@@ -8,7 +8,7 @@ REQUIREMENTS:
 
 
 GEO LOCATION SERVICES:
-* This module is designed to help determine which location a given server is loslooney@stephanlooney.comcated in. This is based of the external IP of the node/minion
+* This module is designed to help determine which location a given server is located in. This is based of the external IP of the node/minion
 
 
 Salty Docker
@@ -26,3 +26,21 @@ docker-sdk can be installed via pip:
 ..code-block::bash
 
     pip install docker
+
+Salty Docker Examples:
+----------------------
+
+*docker swarm init
+
+..code-block::bash
+    salt minion srewu.swarm_init advertise_addr='ens4' listen_addr='0.0.0.0' force_new_cluster=False
+
+    Salt-Master:
+   |_
+     ----------
+     Comment:
+         Docker swarm has been Initalized on tjones-Salt-Master and the worker/manager Join token is below
+     Manger_Token:
+         SWMTKN-1-1yv40emizau5b1hy2x3boj3vcsy7edoldjxooif13kx9jpv97e-4jakordba7mvirp0a8vw4ib7v
+     Worker_Token:
+         SWMTKN-1-1yv40emizau5b1hy2x3boj3vcsy7edoldjxooif13kx9jpv97e-ec78dxpr06sfhplqr05nncihn   
