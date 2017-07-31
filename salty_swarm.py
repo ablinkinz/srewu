@@ -6,6 +6,7 @@ import salt.loader
 __opts__ = salt.config.minion_config('/etc/salt/minion')
 __grains__ = salt.loader.grains(__opts__)
 client = docker.from_env()
+server_name = __grains__['id']
 
 '''
 Initalize Docker on Minion as a Swarm Manager
@@ -17,7 +18,7 @@ Initalize Docker on Minion as a Swarm Manager
 def swarm_init(advertise_addr=str,listen_addr=int, force_new_cluster=bool ):
     d = []
     client.swarm.init(advertise_addr, listen_addr,force_new_cluster)
-    output =  'Docker swrarm has been Initalized on the minion and the worker Join token is below'
+    output =  'Docker swarm has been Initalized on '+   server_name  + ' and the worker/manager Join token is below'
     command = "docker swarm join-token worker | xargs | awk '{print $16}' "
     manager_command = "docker swarm join-token manager | xargs | awk '{print $16}' "
     token = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -37,8 +38,8 @@ Join a Swarm Worker to the cluster
 def joinswarm(remote_addr, listen_addr, token):
     d = []
     client.swarm.join(remote_addrs=[remote_addr], listen_addr=listen_addr, join_token=token )
-    output = 'Minion has joined the Swarm'
-    d.append({'Comment': output, 'WorkerManagerIP': remote_addr })
+    output =  server_name + ' has joined the Swarm'
+    d.append({'Comment': output, 'Worker/ManagerIP': remote_addr })
     return d
 
 '''
@@ -48,6 +49,6 @@ Will force the minion to leave the swarm
 def leave_swarm(force=bool):
     d = []
     client.swarm.leave(force=force)
-    output = 'The minion has left the swarm'
+    output = server_name + ' has left the swarm'
     d.append({'Comment': output})
     return d
