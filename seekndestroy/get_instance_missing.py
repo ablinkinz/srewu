@@ -37,7 +37,7 @@ def show_tags(ids):
             tags = items
             value = tags['Value']
             key = tags['Key']
-            if key == "Environment":
+            if key == "Environment" and "ProjectName" and  "Status" and "TeamName":
                 environment_exist = True
             l.append(key)
             l.append(value)
