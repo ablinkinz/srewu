@@ -1,6 +1,7 @@
-import pyspeedtest
+#import pyspeedtest
 import importlib
 import pip
+import socket
 
 try:
         importlib.import_module('pyspeedtest')
@@ -26,3 +27,12 @@ def latency():
     st = pyspeedtest.SpeedTest()
     ping = st.ping()
     return {"latency":ping}
+
+def tcp_check(address,port):
+    s = socket.socket()
+    try:
+        s.connect((address,port))
+    except Exception as e:
+        return("Connection failed to %s:%d. Error message: %s" % (address,port,e))
+    finally:
+        s.close()
