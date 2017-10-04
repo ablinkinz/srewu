@@ -29,10 +29,10 @@ def latency():
     return {"latency":ping}
 
 def tcp_check(address,port):
-    s = socket.socket()
-    try:
-        s.connect((address,port))
-    except Exception as e:
-        return("Connection failed to %s:%d. Error message: %s" % (address,port,e))
-    finally:
-        s.close()
+    import socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex((address,port))
+    if result == 0:
+        return{"Connected":address}
+    else:
+        return{"Connection Refused/Unavailable":address}
