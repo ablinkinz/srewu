@@ -1,7 +1,7 @@
 # srewu
 Python based Site Reliability Engineer Working Utilities (designed to be used as a module in SaltStack)
 
-:codeauthor Stephan Looney <slooney@stephanlooney.com>
+:codeauthor Stephan Looney <ablinkin@me.com>
 
 REQUIREMENTS:
 * Requests (pip install requests)
