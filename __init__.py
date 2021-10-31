@@ -1,2 +1,2 @@
-from geoinfo import *
-from networktest import *
+from .geoinfo import *
+from .networktest import *

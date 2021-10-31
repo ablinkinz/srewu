@@ -7,7 +7,6 @@ import importlib
 import pip
 import socket
 import doctest
-import docstring
 
 try:
         importlib.import_module('pyspeedtest')
